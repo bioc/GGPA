@@ -42,8 +42,6 @@ Kim H, Yu Z, Lawson A, Zhao H, and Chung D (2017),
 \code{\linkS4class{GGPA}}.
 }
 \examples{
-library(GGPA)
-
 # load simulation data
 
 data(simulation)

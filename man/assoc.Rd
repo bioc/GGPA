@@ -54,7 +54,6 @@ Newton MA, Noueiry A, Sarkar D, and Ahlquist P (2004),
 }
 \examples{
 
-library(GGPA)
 data(simulation)
 fit <- GGPA( simulation$pmat )
 head(assoc( fit, FDR=0.1, fdrControl="global" ))

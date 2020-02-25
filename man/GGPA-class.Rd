@@ -59,8 +59,6 @@ Kim H, Yu Z, Lawson A, Zhao H, and Chung D (2017),
 \examples{
 showClass("GGPA")
 
-		
-library(GGPA)
 data(simulation)
 fit <- GGPA( simulation$pmat )
 fit

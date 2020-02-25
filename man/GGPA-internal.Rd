@@ -7,7 +7,6 @@
 \details{These are not to be called by the user.}
 \examples{
 
-library(GGPA)
 data(simulation)
 fit <- GGPA( simulation$pmat )
 fit

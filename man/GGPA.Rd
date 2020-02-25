@@ -13,15 +13,14 @@ GGPA( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000, seedNum=1234, lbPval=1e
 \arguments{
     \item{gwasPval}{p-value matrix from GWAS data,
 		where row and column correspond to SNP and phenotype, respectively.}
-		\item{pgraph}{A binary matrix representing the prior phenotype graph,
+    \item{pgraph}{A binary matrix representing the prior phenotype graph,
 		where its rows and columns match the columns of \code{gwasPval}.}
     \item{nBurnin}{Number of burn-in iterations. Default is 10000.}
     \item{nMain}{Number of main MCMC iterations. Default is 40000.}
-    \item{seedNum}{Random seed number. Default is 1234.}
-  	\item{lbPval}{Lower bound for GWAS p-value. 
+    \item{lbPval}{Lower bound for GWAS p-value. 
   		Any GWAS p-values smaller than \code{lbPval} are set to \code{lbPval}.
   		Default is 1e-10.}  
-  	\item{verbose}{Amount of progress report during the fitting procedure. 
+    \item{verbose}{Amount of progress report during the fitting procedure. 
   		Possible values are 0 (minimal output), 1, 2, or 3 (maximal output).
   		Default is 1.} 
 }
@@ -46,7 +45,6 @@ Hang J. Kim and Dongjun Chung
 }
 \examples{
 
-library(GGPA)
 data(simulation)
 fit <- GGPA( simulation$pmat )
 fit
