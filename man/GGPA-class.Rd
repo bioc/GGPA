@@ -59,7 +59,7 @@ Kim H, Yu Z, Lawson A, Zhao H, and Chung D (2017),
 \examples{
 showClass("GGPA")
 
-\dontrun{		
+		
 library(GGPA)
 data(simulation)
 fit <- GGPA( simulation$pmat )
@@ -68,6 +68,6 @@ plot(fit)
 head(fdr( fit ))
 head(fdr( fit, i=1, j=2 ))
 str(estimates( fit ))
-}
+
 }
 \keyword{classes}

@@ -18,9 +18,9 @@ Kim H, Yu Z, Lawson A, Zhao H, and Chung D (2017),
 }
 \author{ Hang J. Kim, Dongjun Chung }
 \examples{
-\dontrun{
+
 data(simulation)
 head(t(simulation$pmat))
-}
+
 }
 \keyword{datasets}

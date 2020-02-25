@@ -53,13 +53,13 @@ Newton MA, Noueiry A, Sarkar D, and Ahlquist P (2004),
 \code{\linkS4class{GGPA}}.
 }
 \examples{
-\dontrun{
+
 library(GGPA)
 data(simulation)
 fit <- GGPA( simulation$pmat )
 head(assoc( fit, FDR=0.1, fdrControl="global" ))
-head(assoc( fit, FDR=0.1, fdrControl="global", i=1, j=2 )) )
-}
+head(assoc( fit, FDR=0.1, fdrControl="global", i=1, j=2 )) 
+
 }
 \keyword{models}
 \keyword{methods}

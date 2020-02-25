@@ -45,7 +45,7 @@ Hang J. Kim and Dongjun Chung
 \code{\link{assoc}}, \code{\linkS4class{GGPA}}.
 }
 \examples{
-\dontrun{
+
 library(GGPA)
 data(simulation)
 fit <- GGPA( simulation$pmat )
@@ -53,7 +53,7 @@ fit
 head(assoc( fit, FDR=0.1, fdrControl="global" ))
 head(assoc( fit, FDR=0.1, fdrControl="global", i=1, j=2 ))
 plot(fit)
-}
+
 }
 \keyword{models}
 \keyword{methods}
