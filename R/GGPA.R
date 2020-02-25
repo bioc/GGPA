@@ -105,10 +105,10 @@ GGPA <- function( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000,  lbPval=1e-
   n_UT <- length(which(ind_UT))
   n_nonzero <- ceiling( n_UT * prop_nonzero )
 
-  init_G[ which(ind_UT)[ sample( x=1:n_UT, size=n_nonzero, replace=FALSE ) ] ] <- 1
+  init_G[ which(ind_UT)[ sample( x=seq_len(n_UT), size=n_nonzero, replace=FALSE ) ] ] <- 1
 
-  for (i in 1:(n_pheno-1)){
-  	for (j in (i+1):n_pheno){
+  for (i in seq_len(n_pheno-1)){
+  	for (j in seq(i+1,n_pheno)){
   		init_G[j,i] = init_G[i,j]
   	}
   }
@@ -118,16 +118,16 @@ GGPA <- function( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000,  lbPval=1e-
   if ( !is.null(pgraph) ) {
     # symmetrize the phenotype graph matrix
 
-    for (i in 1:n_pheno){
-    	for (j in 1:n_pheno){
+    for (i in seq_len(n_pheno)){
+    	for (j in seq_len(n_pheno)){
     		pgraph[i,j] = max( pgraph[i,j], pgraph[j,i] )
     	}
     }
 
     # force in edges
 
-    for (i in 1:n_pheno){
-    	for (j in 1:n_pheno){
+    for (i in seq_len(n_pheno)){
+    	for (j in seq_len(n_pheno)){
     		init_G[i,j] = max( init_G[i,j], pgraph[i,j] )
     	}
     }
@@ -161,7 +161,7 @@ GGPA <- function( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000,  lbPval=1e-
   #                 burn-in                    #
   #                                            #
 	##############################################
-  
+
 
   model$Initialize()
   #model$clear.sum_E_ijt()
@@ -186,7 +186,7 @@ GGPA <- function( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000,  lbPval=1e-
   message("Burn in iterations...")
   message("")
 
-  for ( temp_iter in 1:nBurnin ) {
+  for ( temp_iter in seq_len(nBurnin) ) {
 
   	# CurIterTime = proc.time()[3]
   	# print(paste("Iter=",temp_iter,", For each iter, take ",round((CurIterTime-PrevIterTime)/60,1)," min"))
@@ -233,7 +233,7 @@ GGPA <- function( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000,  lbPval=1e-
     		dimnames(print_G)[[1]] = dimnames(print_G)[[2]] = Varnames
 
     		message("acceptance rate:")
-    		print(round(apply(is_accept[1:temp_iter,],2,mean),3))
+    		print(round(apply(is_accept[seq_len(temp_iter),],2,mean),3))
         message(sum(model$G_mat==1)/2," edges connected among possible ",n_pheno*(n_pheno-1)/2," edges")
     		print(paste("p(0|beta,G) = 1/C = ",round(1/model$normC,3)))
     		message("proportion of associated SNPs:")
@@ -260,7 +260,7 @@ GGPA <- function( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000,  lbPval=1e-
   est_mu_vec = sd_mu_vec = rep(0,n_pheno)
   est_sigma1 = sd_sigma1 = rep(0,n_pheno)
 
-  for (i in 1:n_pheno){
+  for (i in seq_len(n_pheno)){
     est_mu_vec[i] = mean(draw_mu_vec[,i])
     sd_mu_vec[i] = sd(draw_mu_vec[,i])
     est_sigma1[i] = mean(draw_sig[,i])
@@ -347,7 +347,7 @@ GGPA <- function( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000,  lbPval=1e-
 
   Starttime = Prevtime = PrevIterTime = proc.time()[3]
 
-  for ( temp_iter in 1:nMain ) {
+  for ( temp_iter in seq_len(nMain) ) {
 
   	# CurIterTime = proc.time()[3]
   	# print(paste("Iter=",temp_iter,", For each iter, take ",round((CurIterTime-PrevIterTime)/60,1)," min"))
@@ -394,7 +394,7 @@ GGPA <- function( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000,  lbPval=1e-
     		dimnames(print_G)[[1]] = dimnames(print_G)[[2]] = Varnames
 
     		message("acceptance rate:")
-    		print(round(apply(is_accept[1:temp_iter,],2,mean),3))
+    		print(round(apply(is_accept[seq_len(temp_iter),],2,mean),3))
         message(sum(model$G_mat==1)/2," edges connected among possible ",n_pheno*(n_pheno-1)/2," edges")
     		print(paste("p(0|beta,G) = 1/C = ",round(1/model$normC,3)))
     		message("proportion of associated SNPs:")
@@ -420,7 +420,7 @@ GGPA <- function( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000,  lbPval=1e-
   est_mu_vec = sd_mu_vec = rep(0,n_pheno)
   est_sigma1 = sd_sigma1 = rep(0,n_pheno)
 
-  for (i in 1:n_pheno){
+  for (i in seq_len(n_pheno)){
     est_mu_vec[i] = mean(draw_mu_vec[,i])
     sd_mu_vec[i] = sd(draw_mu_vec[,i])
     est_sigma1[i] = mean(draw_sig[,i])
@@ -482,7 +482,7 @@ GGPA <- function( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000,  lbPval=1e-
   est_prob_e_ijt = sd_prob_e_ijt = array(0,c(n_pheno,n_pheno))
   dimnames(est_prob_e_ijt)[[1]] = dimnames(est_prob_e_ijt)[[2]] = dimnames(sd_prob_e_ijt)[[1]] = dimnames(sd_prob_e_ijt)[[2]] = Varnames
 
-  for (i_pheno in 1:n_pheno){
+  for (i_pheno in seq_len(n_pheno)){
   	for (j_pheno in i_pheno:n_pheno){
   		est_prob_e_ijt[i_pheno,j_pheno] = mean(model$sum_E_ijt[i_pheno,j_pheno,]/nMain)
   		est_prob_e_ijt[j_pheno,i_pheno] = est_prob_e_ijt[i_pheno,j_pheno]
@@ -499,7 +499,7 @@ GGPA <- function( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000,  lbPval=1e-
 
   ###### Draw graph #######
 
-  for (i in 1:(n_pheno-1)){
+  for (i in seq_len(n_pheno-1)){
   	for (j in (i+1):n_pheno){
   		P_hat_ij[j,i] = P_hat_ij[i,j]
   	}
