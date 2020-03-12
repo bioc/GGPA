@@ -60,7 +60,7 @@ Kim H, Yu Z, Lawson A, Zhao H, and Chung D (2017),
 showClass("GGPA")
 
 data(simulation)
-fit <- GGPA( simulation$pmat )
+fit <- GGPA( simulation$pmat, nMain = 200, nBurnin = 200)
 fit
 plot(fit)
 head(fdr( fit ))

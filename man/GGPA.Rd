@@ -7,7 +7,7 @@ Fit graph-GPA model
 Fit graph-GPA model.
 }
 \usage{
-GGPA( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000, seedNum=1234, lbPval=1e-10, verbose=1 )
+GGPA( gwasPval, pgraph=NULL, nBurnin=10000, nMain=40000, lbPval=1e-10, verbose=1 )
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -46,7 +46,7 @@ Hang J. Kim and Dongjun Chung
 \examples{
 
 data(simulation)
-fit <- GGPA( simulation$pmat )
+fit <- GGPA( simulation$pmat, nMain = 200, nBurnin = 200)
 fit
 head(assoc( fit, FDR=0.1, fdrControl="global" ))
 head(assoc( fit, FDR=0.1, fdrControl="global", i=1, j=2 ))

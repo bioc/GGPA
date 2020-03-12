@@ -55,7 +55,7 @@ Newton MA, Noueiry A, Sarkar D, and Ahlquist P (2004),
 \examples{
 
 data(simulation)
-fit <- GGPA( simulation$pmat )
+fit <- GGPA( simulation$pmat, nMain = 200, nBurnin = 200)
 head(assoc( fit, FDR=0.1, fdrControl="global" ))
 head(assoc( fit, FDR=0.1, fdrControl="global", i=1, j=2 )) 
 
