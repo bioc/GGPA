@@ -33,3 +33,8 @@
 .settings
 .tm_propertie
 .DS_Store
+GGPA.so
+1_Main.o
+3_Param.o
+Gibbs_e_it_no_ann.o
+RcppExports.o
