@@ -34,8 +34,7 @@ Construct \code{GGPA} class object.
 Chung D, Kim H, and Zhao H (2016), 
 "graph-GPA: A graphical model for prioritizing GWAS results and investigating pleiotropic architecture," 13(2): e1005388
 
-Kim H, Yu Z, Lawson A, Zhao H, and Chung D (2017),
-"Improving SNP prioritization and pleiotropic architecture estimation by incorporating prior knowledge using graph-GPA."
+Kim H, Yu Z, Lawson A, Zhao H, and Chung D (2018), "Improving SNP prioritization and pleiotropic architecture estimation by incorporating prior knowledge using graph-GPA," Bioinformatics, bty061.
 }
 \author{
 Hang J. Kim and Dongjun Chung

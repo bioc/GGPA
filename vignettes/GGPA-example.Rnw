@@ -16,7 +16,7 @@
 %%\pagestyle{myheadings}
 %%\markboth{$Date$\hfil$Revision$}{\thepage}
 \usepackage[pdftex,
-bookmarks, 
+bookmarks,
 bookmarksopen,
 pdfauthor={Dongjun Chung},
 pdftitle={GGPA Vignette}]
@@ -48,7 +48,7 @@ $~^6$ VA Cooperative Studies Program Coordinating Center, West Haven, CT, USA.
 
 \section{Overview}
 
-This vignette provides an introduction to the genetic analysis using the `\texttt{GGPA}' package. 
+This vignette provides an introduction to the genetic analysis using the `\texttt{GGPA}' package.
 R package `\texttt{GGPA}' implements graph-GPA,
 a flexible statistical framework for the joint analysis of multiple genome-wide association studies (GWAS)
 using a hidden Markov random field architecture. We encourage questions or requests regarding `\texttt{GGPA}' package to be posted on our Google group for the GPA Suite \url{https://groups.google.com/d/forum/gpa-user-group}. Users can find the most up-to-date versions of `\texttt{GGPA}' package in our GitHub webpage (\url{http://dongjunchung.github.io/GGPA/}).
@@ -65,7 +65,7 @@ library("GGPA")
 
 \noindent
 This vignette is organized as follows.
-Section \ref{workflow} describes the overall graph-GPA analysis workflow \cite{GGPA} including model fitting (Section \ref{fitting}), association mapping (Section \ref{association}), and visualization of an estimate phenotype graph (Section \ref{plot}). 
+Section \ref{workflow} describes the overall graph-GPA analysis workflow \cite{GGPA} including model fitting (Section \ref{fitting}), association mapping (Section \ref{association}), and visualization of an estimate phenotype graph (Section \ref{plot}).
 %Section \ref{fitting} discusses how to fit graph-GPA model.
 %Section \ref{association} explains command lines for association mapping using graph-GPA.
 %Section \ref{plot} discusses command lines to generate a graph describing the genetic relationship among phenotypes.
@@ -83,7 +83,7 @@ In this vignette, we use the simulated GWAS data for $20,000$ SNPs and seven phe
 data(simulation)
 dim(simulation$pmat)
 head(simulation$pmat)
-@ 
+@
 
 \noindent
 In this simulation studies, we assume the three strongly correlated phenotypes (n1, n2, n3), two weakly correlated phenotypes (n4, n5), and two independent phenotypes (n6, n7), as illustrated in Figure \ref{fig:pgraph}. Parameters used to generate simulation data can be found in the list object `\texttt{simulation}'. More details about simulation data generation procedure can be found in our manuscript \cite{GGPA}.
@@ -134,14 +134,14 @@ assoc.marg <- assoc( fit, FDR=0.10, fdrControl="global" )
 dim(assoc.marg)
 apply( assoc.marg, 2, table )
 @
-`\texttt{assoc}' method returns a binary matrix indicating association of each SNP, 
-where one indicates that a SNP is associated with the phenotype and zero otherwise. 
+`\texttt{assoc}' method returns a binary matrix indicating association of each SNP,
+where one indicates that a SNP is associated with the phenotype and zero otherwise.
 Its rows and columns match those of input $p$-value matrix for `\texttt{GGPA}' method.
-`\texttt{assoc}' method allows both local (`\texttt{fdrControl="local"}') and global FDR controls (`\texttt{fdrControl="global"}'), and users can control nominal FDR level using the argument `\texttt{FDR}'. 
+`\texttt{assoc}' method allows both local (`\texttt{fdrControl="local"}') and global FDR controls (`\texttt{fdrControl="global"}'), and users can control nominal FDR level using the argument `\texttt{FDR}'.
 The association mapping results above indicate that about 300 $\sim$ 1400 SNPs are estimated to be associated with these phenotypes under the global FDR control at 0.10 level.
 
 `\texttt{fdr}' method for the output of `\texttt{GGPA}' method (`\texttt{fit}' in this example) further
-provides the matrix of local FDR that a SNP is not associated with each phenotype, 
+provides the matrix of local FDR that a SNP is not associated with each phenotype,
 where its rows and columns match those of input $p$-value matrix for `\texttt{GGPA}' method.
 This method will be useful when users want to scrutinize association of each SNP more closely.
 <<GPA-fdr-ann>>=
@@ -228,11 +228,12 @@ fit <- GGPA( pmat, pgraph )
 @
 
 \begin{thebibliography}{99}
-\bibitem{GGPA} Chung D, Kim H, and Zhao H (2017), 
+\bibitem{GGPA} Chung D, Kim H, and Zhao H (2017),
 ``graph-GPA: A graphical model for prioritizing GWAS results and investigating pleiotropic architecture,''
 \textit{PLOS Computational Biology}, 13(2): e1005388.
-\bibitem{LGGPA} Kim H, Yu Z, Lawson A, Zhao H, and Chung D (2017), 
-``Improving SNP prioritization and pleiotropic architecture estimation by incorporating prior knowledge using graph-GPA.''
+\bibitem{LGGPA} Kim H, Yu Z, Lawson A, Zhao H, and Chung D (2018),
+``Improving SNP prioritization and pleiotropic architecture estimation by incorporating prior knowledge using graph-GPA,''
+Bioinformatics, bty061.
 \end{thebibliography}
 
 \end{document}
