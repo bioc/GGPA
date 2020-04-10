@@ -3,31 +3,31 @@
 
 setMethod(
   f = "get_fit",
-  signature = "GPA",
+  signature = "GGPA",
   definition = function(x) x@fit
 )
 
 setMethod(
   f = "get_summary",
-  signature = "GPA",
+  signature = "GGPA",
   definition = function(x) x@summary
 )
 
 setMethod(
   f = "get_setting",
-  signature = "GPA",
+  signature = "GGPA",
   definition = function(x) x@setting
 )
 
 setMethod(
   f = "get_gwasPval",
-  signature = "GPA",
+  signature = "GGPA",
   definition = function(x) x@gwasPval
 )
 
 setMethod(
   f = "get_pgraph",
-  signature = "GPA",
+  signature = "GGPA",
   definition = function(x) x@pgraph
 )
 
