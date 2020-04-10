@@ -1,6 +1,36 @@
 
 # generic methods for "GGPA" class
 
+setMethod(
+  f = "get_fit",
+  signature = "GPA",
+  definition = function(x) x@fit
+)
+
+setMethod(
+  f = "get_summary",
+  signature = "GPA",
+  definition = function(x) x@summary
+)
+
+setMethod(
+  f = "get_setting",
+  signature = "GPA",
+  definition = function(x) x@setting
+)
+
+setMethod(
+  f = "get_gwasPval",
+  signature = "GPA",
+  definition = function(x) x@gwasPval
+)
+
+setMethod(
+  f = "get_pgraph",
+  signature = "GPA",
+  definition = function(x) x@pgraph
+)
+
 # GGPA model fit summary
 
 setMethod(
@@ -12,8 +42,8 @@ setMethod(
 
     # constants
 
-		nBin <- nrow(object@gwasPval)
-		nGWAS <- ncol(object@gwasPval)
+		nBin <- nrow(get_gwasPval(object))
+		nGWAS <- ncol(get_gwasPval(object))
 
 		# estimates
 
@@ -21,25 +51,25 @@ setMethod(
     est_sigma1 = sd_sigma1 = rep(0,nGWAS)
 
     for (i in seq_len(nGWAS)){
-      est_mu_vec[i] = mean(object@fit$mu[,i])
-      sd_mu_vec[i] = sd(object@fit$mu[,i])
-      est_sigma1[i] = mean(object@fit$sigma[,i])
-      sd_sigma1[i] = sd(object@fit$sigma[,i])
+      est_mu_vec[i] = mean(get_fit(object)$mu[,i])
+      sd_mu_vec[i] = sd(get_fit(object)$mu[,i])
+      est_sigma1[i] = mean(get_fit(object)$sigma[,i])
+      sd_sigma1[i] = sd(get_fit(object)$sigma[,i])
     }
 
-    est_mean_E = apply(object@fit$mean_E,2,mean)
-    sd_mean_E = apply(object@fit$mean_E,2,sd)
+    est_mean_E = apply(get_fit(object)$mean_E,2,mean)
+    sd_mean_E = apply(get_fit(object)$mean_E,2,sd)
 
     MU = round(cbind(est_mu_vec,sd_mu_vec),2)
-    rownames(MU) = colnames(object@gwasPval)
+    rownames(MU) = colnames(get_gwasPval(object))
     colnames(MU) <- c( "estimate", "SE" )
 
     SIGMA = round(cbind(est_sigma1,sd_sigma1),2)
-    rownames(SIGMA) = colnames(object@gwasPval)
+    rownames(SIGMA) = colnames(get_gwasPval(object))
     colnames(SIGMA) <- c( "estimate", "SE" )
 
     EMAT = round(cbind(est_mean_E,sd_mean_E),2)
-    rownames(EMAT) = colnames(object@gwasPval)
+    rownames(EMAT) = colnames(get_gwasPval(object))
     colnames(EMAT) <- c( "estimate", "SE" )
 
 		# output
@@ -50,7 +80,7 @@ setMethod(
     cat( "\tNumber of GWAS data: ", nGWAS , "\n", sep="" )
 		cat( "\tNumber of SNPs: ", nBin , "\n", sep="" )
 		cat( "Use a prior phenotype graph? " )
-		if ( object@setting$usePgraph == TRUE ) {
+		if ( get_setting(object)$usePgraph == TRUE ) {
 		  cat( "YES\n" )
 		} else {
 		  cat( "NO\n" )
@@ -72,8 +102,8 @@ setMethod(
   signature=c("GGPA","missing"),
   definition=function( x, y, pCutoff = 0.5, betaCI = 0.95, ... ) {
 
-    P_hat_ij <- x@summary$P_hat_ij
-    draw_beta <- x@fit$beta
+    P_hat_ij <- get_summary(x)$P_hat_ij
+    draw_beta <- get_fit(x)$beta
 
     # calculate posterior probabilities
 
@@ -114,17 +144,17 @@ setMethod(
 
     # constants
 
-		nBin <- nrow(object@gwasPval)
-		nGWAS <- ncol(object@gwasPval)
+		nBin <- nrow(get_gwasPval(object))
+		nGWAS <- ncol(get_gwasPval(object))
 
 		if ( is.null(i) & is.null(j) ) {
 		  #message( "Info: Marginal local FDR matrix is returned." )
 
   		fdrmat <- matrix( NA, nBin, nGWAS )
-  		colnames(fdrmat) <- colnames(object@gwasPval)
+  		colnames(fdrmat) <- colnames(get_gwasPval(object))
 
   		for (i_phen in seq_len(nGWAS)){
-    		Prob_e_ijt = object@summary$Sum_E_ijt[i_phen,i_phen,] / length(object@fit$loglik)
+    		Prob_e_ijt = get_summary(object)$Sum_E_ijt[i_phen,i_phen,] / length(get_fit(object)$loglik)
         fdrmat[,i_phen] <- 1 - Prob_e_ijt
   		}
 		} else if ( !is.null(i) & !is.null(j) ) {
@@ -132,7 +162,7 @@ setMethod(
 
 		  fdrmat <- rep( NA, nBin )
 
-		  Prob_e_ijt = object@summary$Sum_E_ijt[i,j,] / length(object@fit$loglik)
+		  Prob_e_ijt = get_summary(object)$Sum_E_ijt[i,j,] / length(get_fit(object)$loglik)
       fdrmat <- 1 - Prob_e_ijt
 		} else {
 		  stop( "Both of i and j should be either NULL or numeric!" )
@@ -150,6 +180,6 @@ setMethod(
     definition=function( object, ... ) {
         # return parameter estimates
 
-		return(object@summary)
+		return(get_summary(object))
   }
 )
