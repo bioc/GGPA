@@ -57,8 +57,8 @@ setMethod(
       sd_sigma1[i] = sd(get_fit(object)$sigma[,i])
     }
 
-    est_mean_E = apply(get_fit(object)$mean_E,2,mean)
-    sd_mean_E = apply(get_fit(object)$mean_E,2,sd)
+    est_mean_E = colMeans2(get_fit(object)$mean_E)
+    sd_mean_E = colSds(get_fit(object)$mean_E)
 
     MU = round(cbind(est_mu_vec,sd_mu_vec),2)
     rownames(MU) = colnames(get_gwasPval(object))

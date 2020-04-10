@@ -1,5 +1,6 @@
 useDynLib(GGPA)
 import( Rcpp, stats, methods, graphics, GGally )
+importFrom("matrixStats","colMeans2","colSds")
 exportClasses(Rcpp_cGGPA)
 export( GGPA, assoc )
 export( show, plot, fdr, estimates )
