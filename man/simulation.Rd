@@ -19,6 +19,7 @@ Kim H, Yu Z, Lawson A, Zhao H, and Chung D (2017),
 \author{ Hang J. Kim, Dongjun Chung }
 \examples{
 
+# The simulation data set is included with the GGPA package
 data(simulation)
 head(t(simulation$pmat))
 

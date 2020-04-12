@@ -58,10 +58,16 @@ Kim H, Yu Z, Lawson A, Zhao H, and Chung D (2018), "Improving SNP prioritization
 \examples{
 showClass("GGPA")
 
+# Load the included simulation data
 data(simulation)
+
+# fit GGPA model with 200 iterations and a burn-in of 200 iterations
+# Note that we recommend more than 200 iterations in practice
 fit <- GGPA( simulation$pmat, nMain = 200, nBurnin = 200)
-fit
+
+# Plot GGPA model fit
 plot(fit)
+
 head(fdr( fit ))
 head(fdr( fit, i=1, j=2 ))
 str(estimates( fit ))

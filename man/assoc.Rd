@@ -13,8 +13,8 @@ assoc( object, ... )
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-    \item{object}{GGPA model fit. }
-    \item{FDR}{FDR level. }
+    \item{object}{A GGPA model fit as obtained by GGPA(). }
+    \item{FDR}{The desired FDR level. }
 	  \item{fdrControl}{Method to control FDR. Possible values are "global" (global FDR control) and
         "local" (local FDR control). Default is "global". } 
     \item{i}{Index for the first phenotype used in association mapping.
@@ -54,9 +54,17 @@ Newton MA, Noueiry A, Sarkar D, and Ahlquist P (2004),
 }
 \examples{
 
+# Load the included simulation data
 data(simulation)
+
+# fit GGPA model with 200 iterations and a burn-in of 200 iterations
+# Note that we recommend more than 200 iterations in practice
 fit <- GGPA( simulation$pmat, nMain = 200, nBurnin = 200)
+
+# Association mapping with FDR of 0.1 and global control
 head(assoc( fit, FDR=0.1, fdrControl="global" ))
+
+# We may specift i = 1 and j = 2 if we are interested in that specific phenotype
 head(assoc( fit, FDR=0.1, fdrControl="global", i=1, j=2 )) 
 
 }
