@@ -1,5 +1,6 @@
 % -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
 \documentclass[11pt]{article}
+
 %% Set my margins
 \setlength{\oddsidemargin}{0.0truein}
 \setlength{\evensidemargin}{0.0truein}
@@ -38,10 +39,6 @@ $~^6$ VA Cooperative Studies Program Coordinating Center, West Haven, CT, USA.
 \SweaveOpts{engine=R, echo=TRUE, pdf=TRUE}
 
 \begin{document}
-
-<<style-Sweave, eval=TRUE, echo=FALSE, results=tex>>=
-BiocStyle::latex()
-@
 
 \SweaveOpts{concordance=TRUE}
 %\VignetteIndexEntry{GGPA}
