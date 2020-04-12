@@ -1,7 +1,7 @@
 Package: GGPA
 Type: Package
 Title: graph-GPA: A graphical model for prioritizing GWAS results and investigating pleiotropic architecture
-Version: 0.99.7
+Version: 0.99.8
 Date: 2020-02-25
 Author: Dongjun Chung, Hang J. Kim, Carter Allen
 Maintainer: Dongjun Chung <dongjun.chung@gmail.com>
@@ -9,6 +9,7 @@ Description: Genome-wide association studies (GWAS) is a widely used tool for id
 License: GPL (>= 2)
 URL: https://github.com/dongjunchung/GGPA/
 Depends: R (>= 4.0.0), stats, methods, graphics, GGally, network, sna, scales, matrixStats
+Suggests: BiocStyle
 Imports: Rcpp (>= 0.11.3)
 LinkingTo: Rcpp, RcppArmadillo
 RcppModules: cGGPAmodule

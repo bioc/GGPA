@@ -13,6 +13,10 @@
 
 \usepackage{subfigure}
 
+<<style-Sweave, eval=TRUE, echo=FALSE, results=tex>>=
+BiocStyle::latex()
+@
+
 %%\pagestyle{myheadings}
 %%\markboth{$Date$\hfil$Revision$}{\thepage}
 \usepackage[pdftex,
