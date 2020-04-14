@@ -12,7 +12,7 @@ a statistical framework to prioritize GWAS results by integrating pleiotropy.
 \tabular{ll}{
 Package: \tab GGPA\cr
 Type: \tab Package\cr
-Version: \tab 0.99.10\cr
+Version: \tab 0.99.11\cr
 Date: \tab 2018-01-15\cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr

@@ -1,22 +1,20 @@
-Changes in version 0.99.10:
+Changes in version 0.99.10 (2020-04-14):
 
-Formatted package for Bioconductor submission. No significant user-facing changes. 
+    o   Formatted package for Bioconductor. Changes include:
+	o Added runnable examples
+	o Reformatted source code to match Bioconductor practices
       
 Changes in version 0.9.6:
 
-SIGNIFICANT USER-VISIBLE CHANGES
-
-   o The vignette was updated by incorporating the illustration of the workflow to download the prior disease graph from the companion website (http://www.chunglab.io/ddnet).
-   
-   o plot(): Improve visualization, e.g., using a circle mode.
+    o   Made the following significant changes
+	o The vignette was updated by incorporating the illustration of the workflow to download the prior disease graph from the companion website (http://www.chunglab.io/ddnet).
+	o plot(): Improve visualization, e.g., using a circle mode.
 
 Changes in version 0.9.5:
 
-SIGNIFICANT USER-VISIBLE CHANGES
-
-   o GGPA(): Allow to incorporate a prior phenotype graph.
-   
-   o plot(): Use GGally (ggnet2) instead of Rgraphviz for the phenotype graph visualization.
+    o   Made the following significant changes
+	o GGPA(): Allow to incorporate a prior phenotype graph.
+	o plot(): Use GGally (ggnet2) instead of Rgraphviz for the phenotype graph visualization.
 
 Changes in version 0.9.1:
 
