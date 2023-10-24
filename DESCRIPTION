@@ -1,7 +1,7 @@
 Package: GGPA
 Type: Package
 Title: graph-GPA: A graphical model for prioritizing GWAS results and investigating pleiotropic architecture
-Version: 1.14.0
+Version: 1.15.0
 Date: 2020-02-25
 Author: Dongjun Chung, Hang J. Kim, Carter Allen
 Maintainer: Dongjun Chung <dongjun.chung@gmail.com>
